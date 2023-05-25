@@ -1,0 +1,71 @@
+// const inputi = document.querySelectorAll("input");
+
+// inputi.forEach(elem => {
+
+//     elem.addEventListener("change", promeni);
+// }
+// 
+// function promeni(e) {
+//     let element = e.target;// mozete i samo sa this jer je to bas element koji je apsorbovao dogadjaj
+//     console.log(element.class);
+//     let elementKlasa = element.class;
+//     let kvadrat = document.querySelector("#kvadrat");
+
+//     if (elementKlasa === "visina") {
+
+//         kvadrat.style.height = element.value + "px";
+//     }
+// }
+const inputi = document.querySelectorAll("input");
+inputi.forEach(elem => {
+    elem.addEventListener("change", promeni);
+})
+let kvadrat = document.querySelector("#kvadrat");
+
+const dugme = document.querySelector("#start");
+dugme.addEventListener("click", rotiraj);
+
+function promeni(e) {
+    let element = e.target;
+    let elementKlasa = this.getAttribute("class");//className
+    console.log(elementKlasa)
+    console.log(elementKlasa)
+    if (elementKlasa == "visina") {
+        kvadrat.style.height = element.value + "px";
+    }
+
+    if (elementKlasa == "sirina") {
+
+        kvadrat.style.width = element.value + "px";
+    }
+
+    if (elementKlasa == "rotacija") {
+
+        kvadrat.style.transform = "rotate(" + element.value + "deg)";
+    }
+
+    if (elementKlasa == "boja") {
+        kvadrat.style.backgroundColor = element.value;
+    }
+
+}
+let brojac = 0;
+let tajmer;
+function rotiraj() {
+
+
+
+    if (this.textContent == "Start") {
+        this.textContent = "Stop";
+        tajmer = setInterval(function () {
+            brojac += 5;
+            kvadrat.style.transform = "rotate(" + brojac + "deg)"
+
+        }, 400);
+    } else {
+        this.textContent = "Start";
+        clearInterval(tajmer);
+
+    }
+
+}
